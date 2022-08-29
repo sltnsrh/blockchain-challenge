@@ -15,8 +15,8 @@ public class Transaction implements Runnable {
 
     @Override
     public void run() {
-        if (sender.fromAccount(value))  {
-            receiver.toAccount(value);
+        if (sender.fromBalance(value))  {
+            receiver.toBalance(value);
             blockChain.addTransaction(this);
         }
     }

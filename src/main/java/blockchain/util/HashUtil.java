@@ -12,8 +12,8 @@ public final class HashUtil {
         long startTime = System.currentTimeMillis();
         String hash = "";
         int magic = 0;
-        while (zerosNotOk(hash, blockChain.getCountOfZeros())) {
-            if (System.currentTimeMillis() - startTime > ZeroOptimizer.getMaxGenerationTime()) {
+        while (notEnoughZeros(hash, blockChain.getCountOfZeros())) {
+            if (System.currentTimeMillis() - startTime > 250) {
                 magic = 0;
                 hash = "";
                 break;
@@ -23,7 +23,7 @@ public final class HashUtil {
                     + block.getTimeStamp()
                     + block.getPrevHash()
                     + block.getMinerId()
-                    + block.getZeroN()
+                    + block.getRequiredZerosInHash()
                     + magic
             );
         }
@@ -31,7 +31,7 @@ public final class HashUtil {
         block.setHash(hash);
     }
 
-    private static boolean zerosNotOk(String hash, int countOfZeros) {
+    private static boolean notEnoughZeros(String hash, int countOfZeros) {
         if (hash.isEmpty()) {
             return true;
         }
