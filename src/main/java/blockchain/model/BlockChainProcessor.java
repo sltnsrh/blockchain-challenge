@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class Processor {
+public class BlockChainProcessor {
     private static final int MINERS_LIMIT = 100;
     private static final int MAX_TRANSACTION_VALUE = 50;
     private final ExecutorService executorService = Executors.newFixedThreadPool(15);
@@ -17,7 +17,7 @@ public class Processor {
     private final BlockChain blockChain;
     private static int chainStopLimit = 30;
 
-    public Processor(BlockChain blockChain) {
+    public BlockChainProcessor(BlockChain blockChain) {
         this.blockChain = blockChain;
     }
 
