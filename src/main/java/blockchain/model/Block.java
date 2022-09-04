@@ -83,12 +83,14 @@ public class Block implements Serializable {
 
     public synchronized void printBlockInfo(BlockChain blockChain) {
         String zeroStatus = "N stays the same" + System.lineSeparator();
-        if (this.getRequiredZerosInHash() > blockChain.getCountOfZeros()) {
+        int blockChainCountOfZeros = blockChain.getCountOfZeros();
+        if (this.requiredZerosInHash > blockChainCountOfZeros) {
             zeroStatus = "N was decreased to "
-                    + blockChain.getCountOfZeros() + System.lineSeparator();
-        } else if (this.getRequiredZerosInHash() < blockChain.getCountOfZeros()) {
+                    + blockChainCountOfZeros + System.lineSeparator();
+        }
+        if (this.requiredZerosInHash < blockChainCountOfZeros) {
             zeroStatus = "N was increased to "
-                    + blockChain.getCountOfZeros() + System.lineSeparator();
+                    + blockChainCountOfZeros + System.lineSeparator();
         }
         System.out.println(this + System.lineSeparator() + zeroStatus);
     }
