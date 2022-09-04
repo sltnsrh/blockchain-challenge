@@ -6,18 +6,18 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class Processor {
     private static final int MINERS_LIMIT = 100;
     private static final int MAX_TRANSACTION_VALUE = 50;
+    private final ExecutorService executorService = Executors.newFixedThreadPool(15);
     private final Random random = new Random();
-    private final ExecutorService executorService;
     private final BlockChain blockChain;
     private static int chainStopLimit = 30;
 
-    public Processor(ExecutorService executorService, BlockChain blockChain) {
-        this.executorService = executorService;
+    public Processor(BlockChain blockChain) {
         this.blockChain = blockChain;
     }
 
@@ -37,6 +37,7 @@ public class Processor {
                 }
             }
         }
+        executorService.shutdownNow();
     }
 
     public List<Miner> getMinersPool() {
