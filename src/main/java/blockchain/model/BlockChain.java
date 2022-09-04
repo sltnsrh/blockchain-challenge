@@ -10,7 +10,7 @@ public class BlockChain implements Serializable {
     private final String chainStoragePath;
     private final List<Block> blockChain;
     private final List<Transaction> transactions;
-    private volatile transient int countOfZeros = 0;
+    private transient int countOfZeros = 0;
 
     public static BlockChain getInstance(String filePath) {
         return (BlockChain) SerializationUtils.deserialize(filePath);
