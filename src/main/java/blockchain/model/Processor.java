@@ -10,7 +10,7 @@ import java.util.concurrent.Future;
 
 public class Processor {
     private static final int MINERS_LIMIT = 100;
-    private static final int MAX_TRANSACTION = 50;
+    private static final int MAX_TRANSACTION_VALUE = 50;
     private final Random random = new Random();
     private final ExecutorService executorService;
     private final BlockChain blockChain;
@@ -32,7 +32,7 @@ public class Processor {
                     try {
                         chainStopLimit -= result.get();
                     } catch (ExecutionException | InterruptedException e) {
-                        throw new RuntimeException(e);
+                        throw new RuntimeException("Can't get a result of mining process execution.", e);
                     }
                 }
             }
@@ -55,7 +55,7 @@ public class Processor {
             sender = minersPool.get(random.nextInt(MINERS_LIMIT));
             receiver = minersPool.get(random.nextInt(MINERS_LIMIT));
         }
-        int transactionValue = (int) Math.floor(Math.random() * MAX_TRANSACTION + 1);
+        int transactionValue = (int) Math.floor(Math.random() * MAX_TRANSACTION_VALUE + 1);
         executorService.submit(new Transaction(sender, receiver, transactionValue, blockChain));
     }
 }
