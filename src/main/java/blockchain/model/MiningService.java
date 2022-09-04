@@ -1,6 +1,5 @@
 package blockchain.model;
 
-import blockchain.Main;
 import blockchain.util.HashUtil;
 import blockchain.util.SerializationUtils;
 
@@ -37,7 +36,7 @@ public class MiningService {
         block.printBlockInfo(blockChain);
         blockChain.getChain().add(block);
         miner.toBalance(MINING_PAYMENT);
-        SerializationUtils.serialize(blockChain, Main.BLOCKCHAIN_FILE);
+        SerializationUtils.serialize(blockChain, blockChain.getChainStoragePath());
         return 1;
     }
 
@@ -52,8 +51,10 @@ public class MiningService {
     }
 
     private boolean validate(Block block) {
-        if (block.getHash().isEmpty() && block.getMagic() == ZERO_MAGIC
-                || block.getGenerationTime() > MAX_GENERATION_TIME) {
+        if (block.getHash().isEmpty() && block.getMagic() == ZERO_MAGIC) {
+            return false;
+        }
+        if (block.getGenerationTime() > MAX_GENERATION_TIME) {
             return false;
         }
         if (blockChain.getChain().isEmpty()) {

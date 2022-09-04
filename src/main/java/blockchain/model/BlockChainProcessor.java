@@ -12,13 +12,13 @@ import java.util.concurrent.Future;
 public class BlockChainProcessor {
     private static final int MINERS_LIMIT = 100;
     private static final int MAX_TRANSACTION_VALUE = 50;
+    private static final String BLOCKCHAIN_FILE_PATH = "src/main/resources/chain.ser";
     private final ExecutorService executorService = Executors.newFixedThreadPool(15);
     private final Random random = new Random();
-    private final BlockChain blockChain;
+    private final BlockChain blockChain = BlockChain.getInstance(BLOCKCHAIN_FILE_PATH);
     private static int chainStopLimit = 30;
 
-    public BlockChainProcessor(BlockChain blockChain) {
-        this.blockChain = blockChain;
+    public BlockChainProcessor() {
     }
 
     public void start() {
