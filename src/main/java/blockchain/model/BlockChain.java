@@ -7,21 +7,24 @@ import java.util.stream.Collectors;
 
 public class BlockChain implements Serializable {
     private static final long serialVersionUID = 1L;
+    private final String chainStoragePath;
     private final List<Block> blockChain;
-    private volatile transient int countOfZeros = 0;
     private final List<Transaction> transactions;
+    private transient int countOfZeros = 0;
 
     public static BlockChain getInstance(String filePath) {
         return (BlockChain) SerializationUtils.deserialize(filePath);
     }
 
-    public BlockChain(List<Block> blockChain, List<Transaction> transactions) {
+    public BlockChain(String chainStoragePath, List<Block> blockChain, List<Transaction> transactions) {
+        this.chainStoragePath = chainStoragePath;
         this.blockChain = blockChain;
         this.transactions = transactions;
     }
 
     public String getAllTransactionsInfo() {
-        return this.transactions.isEmpty() ? "no transactions"
+        return this.transactions.isEmpty()
+                ? "no transactions"
                 : this.transactions.stream()
                 .map(Transaction::toString)
                 .collect(Collectors.joining(System.lineSeparator()));
@@ -49,5 +52,13 @@ public class BlockChain implements Serializable {
 
     public List<Block> getChain() {
         return blockChain;
+    }
+
+    public String getChainStoragePath() {
+        return chainStoragePath;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
     }
 }

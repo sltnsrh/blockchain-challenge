@@ -11,7 +11,7 @@ public class Block implements Serializable {
     private String hash;
     private String blockData;
     private long generationTime;
-    private int zeroN;
+    private int requiredZerosInHash;
 
     public int getId() {
         return id;
@@ -53,10 +53,6 @@ public class Block implements Serializable {
         this.hash = hash;
     }
 
-    public String getBlockData() {
-        return blockData;
-    }
-
     public void setBlockData(String blockData) {
         this.blockData = blockData;
     }
@@ -77,22 +73,24 @@ public class Block implements Serializable {
         this.minerId = minerId;
     }
 
-    public int getZeroN() {
-        return zeroN;
+    public int getRequiredZerosInHash() {
+        return requiredZerosInHash;
     }
 
-    public void setZeroN(int zeroN) {
-        this.zeroN = zeroN;
+    public void setRequiredZerosInHash(int requiredZerosInHash) {
+        this.requiredZerosInHash = requiredZerosInHash;
     }
 
     public synchronized void printBlockInfo(BlockChain blockChain) {
         String zeroStatus = "N stays the same" + System.lineSeparator();
-        if (this.getZeroN() > blockChain.getCountOfZeros()) {
+        int blockChainCountOfZeros = blockChain.getCountOfZeros();
+        if (this.requiredZerosInHash > blockChainCountOfZeros) {
             zeroStatus = "N was decreased to "
-                    + blockChain.getCountOfZeros() + System.lineSeparator();
-        } else if (this.getZeroN() < blockChain.getCountOfZeros()) {
+                    + blockChainCountOfZeros + System.lineSeparator();
+        }
+        if (this.requiredZerosInHash < blockChainCountOfZeros) {
             zeroStatus = "N was increased to "
-                    + blockChain.getCountOfZeros() + System.lineSeparator();
+                    + blockChainCountOfZeros + System.lineSeparator();
         }
         System.out.println(this + System.lineSeparator() + zeroStatus);
     }

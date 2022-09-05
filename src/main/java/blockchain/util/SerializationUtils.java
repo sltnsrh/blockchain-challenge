@@ -34,7 +34,7 @@ public final class SerializationUtils {
             return objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Can't read from the file: " + fileName + ". New blockchain was created. \n");
-            return new BlockChain(new ArrayList<>(), new ArrayList<>());
+            return new BlockChain(fileName, new ArrayList<>(), new ArrayList<>());
         }
     }
 }
