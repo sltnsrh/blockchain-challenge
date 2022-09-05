@@ -8,12 +8,12 @@ import java.util.stream.IntStream;
 
 public final class HashUtil {
 
-    public static void setMagicAndHash(Block block, BlockChain blockChain) {
+    public static void setMagicAndHash(Block block, BlockChain blockChain, int maxGenerationTime) {
         long startTime = System.currentTimeMillis();
         String hash = "";
         int magic = 0;
         while (notEnoughZeros(hash, blockChain.getCountOfZeros())) {
-            if (System.currentTimeMillis() - startTime > 250) {
+            if (System.currentTimeMillis() - startTime > maxGenerationTime) {
                 magic = 0;
                 hash = "";
                 break;

@@ -24,7 +24,7 @@ public class MiningService {
         block.setMinerId(miner.getId());
         block.setTimeStamp(System.currentTimeMillis());
         block.setRequiredZerosInHash(blockChain.getCountOfZeros());
-        HashUtil.setMagicAndHash(block, blockChain);
+        HashUtil.setMagicAndHash(block, blockChain, MAX_GENERATION_TIME);
         block.setGenerationTime(System.currentTimeMillis() - startGenerationTime);
         if (!validate(block)) {
             optimizeZeros(block);
@@ -52,9 +52,6 @@ public class MiningService {
 
     private boolean validate(Block block) {
         if (block.getHash().isEmpty() && block.getMagic() == ZERO_MAGIC) {
-            return false;
-        }
-        if (block.getGenerationTime() > MAX_GENERATION_TIME) {
             return false;
         }
         if (blockChain.getChain().isEmpty()) {

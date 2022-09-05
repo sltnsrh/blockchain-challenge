@@ -57,4 +57,8 @@ public class BlockChain implements Serializable {
     public String getChainStoragePath() {
         return chainStoragePath;
     }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
 }

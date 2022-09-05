@@ -32,4 +32,8 @@ public class Miner implements Callable<Integer> {
     public long getId() {
         return this.id;
     }
+
+    public int getBalance() {
+        return balance;
+    }
 }

@@ -59,4 +59,8 @@ public class BlockChainProcessor {
         int transactionValue = (int) Math.floor(Math.random() * MAX_TRANSACTION_VALUE + 1);
         executorService.submit(new Transaction(sender, receiver, transactionValue, blockChain));
     }
+
+    public BlockChain getBlockChain() {
+        return blockChain;
+    }
 }
