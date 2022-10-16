@@ -1,16 +1,15 @@
 package blockchain.model;
 
+import static blockchain.util.Settings.*;
+
 import blockchain.util.HashUtil;
 import blockchain.util.SerializationUtils;
 
 public class MiningService {
     private static final String ZERO_HASH = "0";
-    private static final int MIN_GENERATION_TIME = 150;
-    private static final int MAX_GENERATION_TIME = 250;
     private static final int SINGLE_BLOCK = 1;
     private static final int ZERO_MAGIC = 0;
     private static final int FIRST_ID = 1;
-    private static final int MINING_PAYMENT = 100;
     private final BlockChain blockChain;
 
     public MiningService(BlockChain blockChain) {
