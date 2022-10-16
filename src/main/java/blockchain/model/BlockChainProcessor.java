@@ -21,14 +21,14 @@ public class BlockChainProcessor {
 
     public void start() {
         List<Miner> minersPool = getMinersPool();
-        while (chainStopLimit > 0) {
+        while (CHAIN_STOP_LIMIT > 0) {
             for (int i = 0; i < 5; i++) {
-                if (chainStopLimit > 0) {
+                if (CHAIN_STOP_LIMIT > 0) {
                     executeNewRandomTransaction(minersPool);
                     Miner miner = minersPool.get(random.nextInt(MINERS_LIMIT));
                     Future<Integer> result = executorService.submit(miner);
                     try {
-                        chainStopLimit -= result.get();
+                        CHAIN_STOP_LIMIT -= result.get();
                     } catch (ExecutionException | InterruptedException e) {
                         throw new RuntimeException("Can't get a result of mining process execution.", e);
                     }
