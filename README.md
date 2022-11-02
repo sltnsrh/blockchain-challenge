@@ -9,10 +9,6 @@ Information about current transactions that have created from the moment of prev
 last block to the field "blockData". Validation of blocks compares previous block hash and appropriate current block field. 
 Also, if the block is generated for too long, such an operation will be canceled.
 
-For the test purpose created a pool of 100 miners which take participate in providing transactions and blocks generation.
-You can change a size of miners pool, a maximal transaction value, a chain size, and count of executor threads manually 
-at MiningService.java constants.
-
 In Settings class your can setup:
 - MINERS_LIMIT - max size of miners pool;
 - MAX_TRANSACTION_VALUE - max limit of transactions value in blockchain system;

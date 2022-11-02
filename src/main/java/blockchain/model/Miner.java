@@ -1,5 +1,6 @@
 package blockchain.model;
 
+import blockchain.service.MiningService;
 import java.util.concurrent.Callable;
 
 public class Miner implements Callable<Integer> {
