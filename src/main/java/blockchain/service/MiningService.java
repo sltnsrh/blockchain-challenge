@@ -1,7 +1,10 @@
-package blockchain.model;
+package blockchain.service;
 
 import static blockchain.util.Settings.*;
 
+import blockchain.model.Block;
+import blockchain.model.BlockChain;
+import blockchain.model.Miner;
 import blockchain.util.HashUtil;
 import blockchain.util.SerializationUtils;
 

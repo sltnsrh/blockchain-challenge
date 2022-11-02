@@ -1,5 +1,6 @@
 package blockchain.model;
 
+import blockchain.service.MiningService;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

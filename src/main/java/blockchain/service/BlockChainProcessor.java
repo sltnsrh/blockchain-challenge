@@ -1,7 +1,11 @@
-package blockchain.model;
+package blockchain.service;
 
 import static blockchain.util.Settings.*;
 
+import blockchain.model.BlockChain;
+import blockchain.model.Miner;
+import blockchain.model.Transaction;
+import blockchain.service.MiningService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

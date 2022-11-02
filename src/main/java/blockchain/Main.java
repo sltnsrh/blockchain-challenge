@@ -1,6 +1,6 @@
 package blockchain;
 
-import blockchain.model.BlockChainProcessor;
+import blockchain.service.BlockChainProcessor;
 
 public class Main {
 

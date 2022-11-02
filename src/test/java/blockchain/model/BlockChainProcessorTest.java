@@ -1,5 +1,6 @@
 package blockchain.model;
 
+import blockchain.service.BlockChainProcessor;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
